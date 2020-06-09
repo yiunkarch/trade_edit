@@ -1,4 +1,8 @@
 # trade_edit:villager/by_profession
+# called by (villager) with:
+# 	var #wv_level
+# declares:
+# 	storage to_add
 
 execute if entity @s[nbt={VillagerData:{profession:"minecraft:armorer"}}] run data modify storage trade_edit to_add set from storage trade_edit armorer
 execute if entity @s[nbt={VillagerData:{profession:"minecraft:butcher"}}] run data modify storage trade_edit to_add set from storage trade_edit butcher
@@ -23,3 +27,5 @@ data modify storage trade_edit to_add set from storage trade_edit to_add[0]
 scoreboard players add @s trade_edit 1
 
 function trade_edit:add_trades
+
+data remove storage trade_edit to_add

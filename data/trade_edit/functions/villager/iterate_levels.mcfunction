@@ -1,4 +1,8 @@
 # trade_edit:villager/iterate_levels
+# called by (villager/by_profession) with:
+# 	var #wv_level
+# 	storage to_add[]
+# declares:
 
 data remove storage trade_edit to_add[0]
 
