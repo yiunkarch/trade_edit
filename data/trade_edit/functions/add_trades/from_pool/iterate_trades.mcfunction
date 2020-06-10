@@ -11,6 +11,7 @@ scoreboard players operation #wp_weight trade_edit -= #wp_wt_weight trade_edit
 
 scoreboard players reset #wp_wt_weight trade_edit
 
-# remove data, recurse if not selected
+# move trade data to end of list and recurse
+execute if score #wp_weight trade_edit matches 0.. run data modify storage trade_edit working_pool.pool append from storage trade_edit working_pool.pool[0]
 execute if score #wp_weight trade_edit matches 0.. run data remove storage trade_edit working_pool.pool[0]
 execute if score #wp_weight trade_edit matches 0.. if data storage trade_edit working_pool.pool[0] run function trade_edit:add_trades/from_pool/iterate_trades
