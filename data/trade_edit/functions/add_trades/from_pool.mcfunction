@@ -22,6 +22,12 @@ function trade_edit:add_trades/process_item
 data modify storage trade_edit working_pool.pool[0].sell set from storage trade_edit working_item
 data remove storage trade_edit working_item
 
+# set maxUses
+data modify storage trade_edit working_range set from storage trade_edit working_pool.pool[0].maxUses
+function trade_edit:random/from_range
+data modify storage trade_edit working_pool.pool[0].maxUses set from storage trade_edit working_range
+data remove storage trade_edit working_range
+
 data modify entity @s Offers.Recipes append from storage trade_edit working_pool.pool[0]
 
 function trade_edit:random/from_pool/remove_head
