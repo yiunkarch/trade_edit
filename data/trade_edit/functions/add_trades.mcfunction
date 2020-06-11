@@ -7,7 +7,12 @@
 
 # set working_pool to first item in list, and add trades from there
 data modify storage trade_edit working_pool set from storage trade_edit to_add[0]
-execute store result score #wp_rolls trade_edit run data get storage trade_edit working_pool.rolls
+
+data modify storage trade_edit working_range set from storage trade_edit working_pool.rolls
+function trade_edit:random/from_range
+execute store result score #wp_rolls trade_edit run data get storage trade_edit working_range
+data remove storage trade_edit working_range
+
 execute if score #wp_rolls trade_edit matches 1.. run function trade_edit:add_trades/from_pool
 scoreboard players reset #wp_rolls trade_edit
 
