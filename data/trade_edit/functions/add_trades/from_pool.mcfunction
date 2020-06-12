@@ -8,7 +8,6 @@
 function trade_edit:random/from_pool
 
 # apply functions on trade items
-
 data modify storage trade_edit working_item set from storage trade_edit working_pool.pool[0].buy
 function trade_edit:add_trades/process_item
 data modify storage trade_edit working_pool.pool[0].buy set from storage trade_edit working_item
@@ -28,7 +27,8 @@ function trade_edit:random/from_range
 data modify storage trade_edit working_pool.pool[0].maxUses set from storage trade_edit working_range
 data remove storage trade_edit working_range
 
-data modify entity @s Offers.Recipes append from storage trade_edit working_pool.pool[0]
+# add trade if valid
+execute if data storage trade_edit working_pool.pool[0].buy if data storage trade_edit working_pool.pool[0].sell run data modify entity @s Offers.Recipes append from storage trade_edit working_pool.pool[0]
 
 function trade_edit:random/from_pool/remove_head
 
